@@ -1,0 +1,11 @@
+#gitignore file
+
+# database
+d.sqlite3
+
+#pycache files
+
+ocr/__pycache__/
+ocrapp/__pycache__/
+ocrapp/migrations/__pycache__/
+ocrfiles/__pycache__/
