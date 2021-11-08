@@ -1,0 +1,26 @@
+{% extends 'ocrapp/base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block content %}
+<script type="text/javascript">
+   window.history.forward();
+   function noBack() {
+       window.history.forward();
+   }
+</script>
+<div class="sad" style="transform: scale(0.86,0.95);">
+<h1>LOGIN</h1><br>
+
+<form action="{% url 'templogin' %}" method="POST">
+{% csrf_token %}
+{{ login_form.as_p}}<br>
+<input type="submit" class="btn btn-primary" style="padding-left:15px;padding-right:15px;" value="Login">
+</form>
+{% if UserDoesntExist %}
+<br>
+<h5><mark> Enter Valid Details </mark></h5>
+
+{% endif %}
+</div>
+{% endblock %}
