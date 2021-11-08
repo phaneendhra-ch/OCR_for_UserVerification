@@ -1,0 +1,18 @@
+{% extends 'ocrapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<h1>Update/Upload Your Aadhar</h1><br>
+
+<div class="form-group">
+<form method="POST" enctype="multipart/form-data">
+{{ AadharUpdate_Form.as_p}}
+{% csrf_token %}
+</div>
+<br>
+<input type="submit" class="btn btn-success" value="Upload Aadhar">
+
+</form>
+</div>
+
+{% endblock %}
