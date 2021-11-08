@@ -1,0 +1,36 @@
+{% extends 'ocrapp/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="" style="transform: scale(0.85,0.95);">
+{% if user_registered %}
+<h1>Thanks for registering !!</h1>
+
+{% else %}
+
+{% if showmessage %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <b>{{ message }}</b>
+  </div>
+</div>
+{% endif %}
+<h1>Enter Your Details Below :</h1><br>
+
+<div class="form-group">
+<form method="POST" enctype="multipart/form-data">
+{{ login_form.as_p}}
+{{ Register_Form.as_p}}
+<div style="color:red;">
+<b>{{ imagereq}} </b>
+</div>
+{% csrf_token %}<br>
+<input type="submit" class="btn btn-success" value="Register Here">
+</form>
+</div>
+<br>
+{% endif %}
+</div>
+{% endblock %}
