@@ -1,0 +1,57 @@
+{% extends 'ocrapp/base.html' %}
+
+{% block content %}
+
+{% if user.is_verified %}
+<h1>Congratulations, You are now a Fully-Verified User <i class="fa fa-user" area-hidden="true" style="font-size:35px;"></i><i class="fa fa-check" area-hidden="true" style="font-size:55px;"></i></h1><br>
+
+{% else %}
+{% for message in messages %}
+<div class="container-fluid p-0">
+  <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+    <b>{{ message }}</b>
+  </div>
+</div>
+{% endfor %}
+<h1 style="text-align:center;">Not a Verified User <i class="fa fa-user-times" area-hidden="true"></i> </h1><br>
+<!--<h2>It seems you haven't verified your identity, click below button to verify your status.</h2><br>-->
+<hr style="border: 5px solid purple;"><br>
+<h3 style="text-align:center;">{{user.customregister.Name|title}}'s Aadhar Photo</h3><br>
+
+<div class="imgdatashow">
+
+<div style="float:left">{{ your_details }}</div>
+<div style="float:left;">
+  {% if show_details %}
+  <h4><b>Details bought up by OCR</b></h4><br>
+  {% endif %}
+  {% for key, value in getinfoocrdetails.items %}
+      <tr>
+          <td> <b>{{ key|title }}:</b> </td> <td> {{ value|title }} </td>
+      </tr><br>
+  {% endfor %}
+</div >
+
+<div style="float:right;">
+  {% if show_details %}
+  <h4><b>Details You Mentioned</b></h4><br>
+  <b>Aadhar Number :</b> {{user.Aadhar_Num}}<br>
+  {% endif %}
+  {% for key, value in your_details_onetoone.items %}
+      <tr>
+          <td> <b>{{ key }}:</b> </td> <td> {{ value }} </td>
+      </tr><br>
+  {% endfor %}
+</div >
+<div align="center">
+<img src="{{user.customregister.AadharPic.url}}" alt="No image" width="40%" height="55%" style="border:3px purple solid"><br>
+</div>
+
+</div><br><br><h3 style="text-align:center;">{{invalid}}</h3>
+<hr style="border: 5px solid purple;"><br>
+<a style="display:block;text-align:center;font-size:18px;text-decoration:none;" href="{% url 'verifypage' %}">Try Again <i class="fa fa-repeat" aria-hidden="true"></i></a>
+{% endif %}
+{% endblock %}
