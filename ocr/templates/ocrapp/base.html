@@ -1,0 +1,98 @@
+<html lang="en" dir="ltr">
+  {% load static %}
+  <head>
+    <link rel="shortcut icon" type="image/png" href="{% static 'Design16.ico' %}"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!--<script type="text/javascript">
+       window.history.forward();
+       function noBack() {
+           window.history.forward();
+       }
+   </script>-->
+   <style>
+   /* Chrome, Safari, Edge, Opera */
+   input::-webkit-outer-spin-button,
+   input::-webkit-inner-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+   }
+
+   /* Firefox */
+   input[type=number] {
+     -moz-appearance: textfield;
+   }
+   /*
+   i.fa.fa-user:before{
+     content:none;
+   }*/
+   input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+   </style>
+
+    <meta charset="utf-8">
+    <title>OCR : Verify Your Identity</title>
+
+  </head>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+<div class="">
+  <a class="navbar-brand" style="margin-right:1px;" href="{% url 'tempindex' %}">Be OCR
+    <a style="color: coral;margin-left: 0.2px; text-decoration: none; padding-right:20px;" href="{% url 'tempindex' %}">IFIED</a></a>
+</div>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      {% if user.is_authenticated %}
+          <a class="nav-item nav-link" href="{% url 'templogout' %}">LogOut <i class="fa fa-sign-out" style="color:white;font-size:16.5px;"></i></a>
+          {% if user.is_staff %}
+          <!--<a class="nav-item nav-link" style="text-decoration: none;background-color:rgb(25, 0, -50);border-radius: 25px;">Welcome,<b>Admin</b><i class="glyphicon glyphicon-user"></i> {{user.Aadhar_Num}}</a>-->
+          <a class="nav-item nav-link" style="padding-right:15px;" href="{% url 'admin:index' %}" target="_blank">Admin Dashboard <i class="fa fa-dashboard" style="font-size:18px;"></i></a>
+          {% else %}
+          <!--<a class="nav-item nav-link" style="text-decoration: none;">Welcome, <i class="fa fa-user" style="color:rgb(255, 153, 0);font-size:17px;"></i> {{user.customregister.Name|title }}</a>-->
+          {% endif %}
+      {% else %}
+      <a class="nav-item nav-link" style="padding-right:15px;" href="{% url 'templogin' %}">Login</a>
+      <a class="nav-item nav-link" href="{% url 'tempregister' %}">Register</a>
+      {% endif %}
+    </div>
+    <div class="navbar-nav ml-auto">
+      {% if user.is_authenticated %}
+            {% if user.is_staff %}
+            <a class="nav-item nav-link" style="text-decoration: none;background-color:rgb(25, 0, -50);border-radius: 25px;">Welcome,<b>Admin</b><i class="glyphicon glyphicon-user"></i> {{user.Aadhar_Num}}</a>
+            {% else %}
+            <!--<a class="nav-item nav-link" style="text-decoration: none;">Welcome, <i class="fa fa-user" style="color:rgb(255, 153, 0);font-size:17px;"></i> {{user.customregister.Name|title }}</a>-->
+            <div class="dropdown">
+    <button type="button" class="btn btn-dark dropdown-toggle" data-toggle="dropdown">
+      <a class="nav-item nav-link" style="text-decoration: none;">Welcome, <i class="fa fa-user" style="color:rgb(255, 153, 0);font-size:17px;"></i> {{user.customregister.Name|title }}</a>
+    </button>
+    <div class="dropdown-menu" style="background-color:rgb(51, 204, 204);padding-right:auto;padding-left:auto" align="center">
+      <a class="dropdown-item" href="{% url 'updateaadharpic' %}" style="color:purple;"><b>Update Aadhar Card</b></a>
+      <a class="dropdown-item" href="{% url 'updatepassword' %}" style="color:purple;"><b>Change Password</b></a>
+    </div>
+  </div>
+            {% endif %}
+      {% else %}
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<div class="jumbotron" style="background-color:white;">
+{% block content %}
+<h1>Optical Character Recognition</h1><br>
+<h3>Click on <mark>Login</mark> to know your status, if not a registered user then do click on <mark>Register</mark></h3>
+{% endblock %}
+</div>
+<footer class="bg-dark text-center text-white " style="position:relative;width:100%;bottom:0%;display:block;">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2021 Copyright : Aapoon <b>Data-Science</b> Interns
+    <!--<a class="text-dark" style= "text-decoration:none;position: fixed;bottom: 0;">Aapoon Interns </a> bg-dark text-center text-white bg-light text-center text-lg-start-->
+  </div>
+  <!-- Copyright -->
+</footer>
+</html>
