@@ -1,7 +1,7 @@
 #gitignore file
 
 # database
-d.sqlite3
+db.sqlite3
 
 #pycache files
 
